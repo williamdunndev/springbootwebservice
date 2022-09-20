@@ -1,34 +1,33 @@
 package com.introproject.webapp;
 
-import java.util.ArrayList;
+import org.springframework.stereotype.Component;
 
+// Note the default name is overridden from "team" to "team1"
+@Component("team1")
 public class Team {
-    private final long id;
-    private final String name;
-    private final ArrayList<Player> players;
-
-    public Team(long id, String name, ArrayList<Player> players) {
-        this.id = id;
-        this.name = name;
-        this.players = players;
-    }
-
-    public Team(long id) {
-        this.id = id;
-        this.name = "";
-        this.players = new ArrayList<Player>();
-    }
-    public long getId() {
-        return id;
-    }
+    private String name;
+    private String stripColour;
 
     public String getName() {
         return name;
     }
-    public ArrayList<Player> getPlayers() {
-        return players;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public void addPlayer(Player player) {
-        players.add(player);
+
+    public String getStripColour() {
+        return stripColour;
     }
+
+    public void setStripColour(String stripColour) {
+        this.stripColour = stripColour;
+    }
+
+    public void printInfo() {
+        System.out.println(String.format("team name is %s", name));
+        System.out.println(String.format("team strip colour is %s", stripColour));
+    }
+
+
 }

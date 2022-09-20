@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 // RestController contains routes of application and determines what happens when users visit those routes
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class PlayerController {
 
     ArrayList<Player> players = new ArrayList<Player>();
-
-    Team team = new Team(1);
 
     private final AtomicLong counter = new AtomicLong();
 
@@ -39,7 +38,6 @@ public class PlayerController {
     public String addPlayer(@RequestParam(value = "firstName", defaultValue = "John") String firstName, @RequestParam(value = "lastName", defaultValue = "Jones") String lastName) {
         Player newPlayer = new Player(counter.incrementAndGet(), firstName, lastName);
 
-        team.addPlayer(newPlayer);
         players.add(newPlayer);
         return String.format("new player added with id %s", newPlayer.getId());
     }
@@ -55,7 +53,6 @@ public class PlayerController {
                 return String.format("player with id %s updated", id);
             }
         }
-        team.addPlayer(newPlayer);
         players.add(newPlayer);
         return String.format("new player added with id %s", newPlayer.getId());
     }
